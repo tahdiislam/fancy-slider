@@ -29,10 +29,13 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
-    .then(response => response.json())
-    .then(data => showImages(data.hitS))
-    .catch(err => console.log(err))
+  fetch(
+    `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
+  )
+    .then((response) => response.json())
+    // .then(data => console.log(data))
+    .then((data) => showImages(data.hits))
+    .catch((err) => console.log(err));
 }
 
 let slideIndex = 0;
@@ -47,7 +50,7 @@ const selectItem = (event, img) => {
     alert('Hey, Already added !')
   }
 }
-var timer
+let timer
 const createSlider = () => {
   // check slider image length
   if (sliders.length < 2) {
